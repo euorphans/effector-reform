@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[767],{8496:e=>{e.exports=JSON.parse('{"label":"Base form","permalink":"/docs/tags/base-form","allTagsPath":"/docs/tags","count":1,"items":[{"id":"learn/examples/base-form","title":"Base form example","description":"","permalink":"/docs/learn/examples/base-form"}],"unlisted":false}')}}]);
