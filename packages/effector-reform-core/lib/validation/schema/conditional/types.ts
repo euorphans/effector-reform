@@ -1,5 +1,5 @@
 import { ValidationNodeType } from '../types';
-import { ValueNode } from '../additional/types';
+import { ValueNode } from '../additional';
 import { ValidationSchemaNode } from '../primitives';
 
 export type EqualNode = {
