@@ -89,6 +89,23 @@ export type FormErrors<T extends ReadyFieldsGroupSchema | PrimitiveValue> =
       }
     : T;
 
+type MappableNode = ReadyFieldsGroupSchema | PrimitiveField | ArrayField<any>;
+
+type GetNodeKeys<
+  T extends MappableNode,
+  Result extends string | number | symbol,
+> = T extends PrimitiveField
+  ? Result
+  : T extends ArrayField<any, any, infer K extends MappableNode>
+    ? GetNodeKeys<K, Result>
+    : T extends ReadyFieldsGroupSchema
+      ? Result | FormPaths<T>
+      : never;
+
+export type FormPaths<Fields extends ReadyFieldsGroupSchema> = {
+  [K in keyof Fields]: GetNodeKeys<Fields[K], K>;
+}[string];
+
 export type FormType<
   Fields extends UserFormSchema<any>,
   Values extends FormValues<any>,

@@ -2,8 +2,9 @@ import { ReadyFieldsGroupSchema } from '../../../fields';
 import { setupUpdating } from './setup-updating';
 import { setupBatching } from './setup-batching';
 import { getFormMeta } from '../get-form-meta';
-import { createStore, sample } from 'effector';
+import { createEvent, createStore, sample } from 'effector';
 import { spread } from 'patronum';
+import { setupGetters } from './setup-getters';
 
 export function mapSchema<T extends ReadyFieldsGroupSchema>(node: T) {
   const { schemaUpdated, focused, blurred, metaChanged } = setupUpdating();
@@ -60,6 +61,10 @@ export function mapSchema<T extends ReadyFieldsGroupSchema>(node: T) {
     }),
   });
 
+  sample({
+    clock: schemaUpdated,
+  });
+
   return {
     $api,
     $values,
@@ -69,5 +74,6 @@ export function mapSchema<T extends ReadyFieldsGroupSchema>(node: T) {
     focused,
     blurred,
     metaChanged,
+    ...setupGetters($api),
   };
 }

@@ -278,5 +278,6 @@ export function setupArrayField(
     setOuterError: field.changeError,
 
     setValue: field.change,
+    changed: field.changed,
   };
 }

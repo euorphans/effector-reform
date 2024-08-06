@@ -3,6 +3,7 @@ import {
   FieldBatchedSetter,
   FieldError,
 } from '../../fields';
+import { Event, EventCallable } from 'effector';
 
 export type Node = any;
 
@@ -15,7 +16,7 @@ export type BasePathApi = {
   setInnerError: (error: FieldError) => void;
   setOuterError: (error: FieldError) => void;
 
-  setValue: <T>(value: T) => void;
+  setValue: EventCallable<any>;
 
   batchedSetValue: <T>(info: FieldBatchedSetter<T>) => void;
   batchedSetInnerError: (error: FieldBatchedSetter<FieldError>) => void;
@@ -30,12 +31,15 @@ export type ArrayFieldPathApi = {
   clearMemory: (withField?: boolean) => void;
 
   batchedClear: (info: FieldBatchedPayload) => void;
+
+  changed: Event<any>;
 } & BasePathApi;
 
 export type PrimitiveFieldPathApi = {
   type: 'primitive-field';
 
   clearMemory: (withField?: boolean) => void;
+  changed: Event<any>;
 } & BasePathApi;
 
 export type PathApi = ArrayFieldPathApi | PrimitiveFieldPathApi;

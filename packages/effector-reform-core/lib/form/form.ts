@@ -52,6 +52,7 @@ export function createForm<T extends AnySchema>(options: CreateFormOptions<T>) {
     blurred,
     addBatchTask,
     metaChanged,
+    get,
   } = mapSchema(fields);
 
   const $isDirty = createStore(false);
@@ -268,6 +269,7 @@ export function createForm<T extends AnySchema>(options: CreateFormOptions<T>) {
     setErrors,
 
     setPartialValues,
+    get,
 
     '@@unitShape': () => ({
       errors: $errors,
